@@ -44,18 +44,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 创作选项卡切换
-    createTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // 移除所有active类
-            createTabs.forEach(t => t.classList.remove('active'));
-            panels.forEach(p => p.classList.remove('active'));
-
-            // 添加active类到当前选中的选项卡和面板
-            tab.classList.add('active');
-            const targetPanel = document.getElementById(`${tab.dataset.tab}-panel`);
-            targetPanel.classList.add('active');
+    if (createTabs && createTabs.length > 0) {
+        createTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有tab的active类
+                createTabs.forEach(t => t.classList.remove('active'));
+                // 添加当前tab的active类
+                tab.classList.add('active');
+                
+                // 获取对应面板的ID
+                const targetPanelId = tab.getAttribute('data-panel');
+                
+                // 隐藏所有面板
+                panels.forEach(panel => panel.classList.remove('active'));
+                
+                // 显示目标面板
+                const targetPanel = document.getElementById(targetPanelId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+            });
         });
-    });
+    }
 
     // FAQ问答切换
     faqItems.forEach(item => {
@@ -118,75 +128,84 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 生成按钮功能
     if (generateBtn) {
-        generateBtn.addEventListener('click', function() {
-            if (promptTextarea.value.trim() === '') {
-                alert('请输入描述以生成图像');
+        generateBtn.addEventListener('click', async () => {
+            const prompt = promptTextarea.value.trim();
+            
+            if (!prompt) {
+                alert('请输入图像描述');
                 return;
             }
             
-            // 显示加载中状态
-            generateBtn.textContent = '生成中...';
-            generateBtn.disabled = true;
+            // 获取选中的风格和比例
+            const activeStyle = document.querySelector('.style-option.active');
+            const activeRatio = document.querySelector('.ratio-option.active');
             
-            // 模拟生成过程
-            setTimeout(function() {
-                // 恢复按钮状态
-                generateBtn.textContent = '生成 (免费)';
-                generateBtn.disabled = false;
+            const style = activeStyle ? activeStyle.textContent.trim() : '写实照片';
+            const ratio = activeRatio ? activeRatio.getAttribute('data-ratio') || '1:1' : '1:1';
+            
+            // 显示加载状态
+            const previewArea = document.querySelector('.preview-area');
+            if (previewArea) {
+                previewArea.innerHTML = `
+                    <div class="preview-placeholder">
+                        <span class="material-symbols-outlined">hourglass_top</span>
+                        <p>正在生成图像，请稍候...</p>
+                    </div>
+                `;
+            }
+            
+            try {
+                console.log('发送API请求:', { prompt, style, ratio });
+                const response = await fetch('/api/generate-image', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt, style, ratio })
+                });
                 
-                // 模拟显示结果，实际应用中会是API调用
-                const previewArea = document.querySelector('.preview-area');
-                const placeholder = document.querySelector('.preview-placeholder');
+                const data = await response.json();
+                console.log('API响应:', data);
                 
-                if (placeholder) {
-                    placeholder.style.display = 'none';
-                }
-                
-                // 清除预览区域中的任何现有内容，但保留下载按钮
-                const downloadBtn = document.querySelector('.download-btn');
-                while (previewArea.firstChild) {
-                    if (previewArea.firstChild === downloadBtn) {
-                        break;
-                    }
-                    previewArea.removeChild(previewArea.firstChild);
-                }
-                
-                // 创建结果容器
-                const resultContainer = document.createElement('div');
-                resultContainer.className = 'result-container';
-                
-                // 创建模拟的结果图像
-                const resultImage = document.createElement('img');
-                resultImage.src = 'img/generated-result.jpg'; // 在实际应用中，这会是API返回的图像URL
-                resultImage.alt = '生成的艺术作品';
-                resultImage.className = 'generated-image';
-                
-                // 将图像添加到结果容器
-                resultContainer.appendChild(resultImage);
-                
-                // 将结果容器添加到预览区域
-                previewArea.insertBefore(resultContainer, downloadBtn);
-                
-                // 显示下载按钮
-                if (downloadBtn) {
-                    downloadBtn.style.display = 'flex';
-                    
-                    // 更新下载按钮的事件监听器，使其引用新生成的图像
-                    downloadBtn.onclick = function() {
-                        // 创建一个链接元素
-                        const downloadLink = document.createElement('a');
-                        downloadLink.href = resultImage.src;
-                        downloadLink.download = '艺术作品_' + new Date().getTime() + '.jpg';
+                if (data.output && data.output.results && data.output.results.length > 0) {
+                    // 获取阿里云返回的临时图片URL
+                    const imageUrl = data.output.results[0].url;
+                    if (previewArea) {
+                        previewArea.innerHTML = `
+                            <div class="result-container">
+                                <img src="${imageUrl}" alt="${prompt}" class="generated-image">
+                                <button class="download-btn">
+                                    <span class="material-symbols-outlined">download</span>
+                                    下载图片
+                                </button>
+                            </div>
+                        `;
                         
-                        // 模拟点击链接以触发下载
-                        document.body.appendChild(downloadLink);
-                        downloadLink.click();
-                        document.body.removeChild(downloadLink);
-                    };
+                        // 设置下载按钮
+                        const downloadBtn = previewArea.querySelector('.download-btn');
+                        if (downloadBtn) {
+                            downloadBtn.addEventListener('click', () => {
+                                const link = document.createElement('a');
+                                link.href = imageUrl;
+                                link.download = `MagicCanvas_${Date.now()}.png`;
+                                link.click();
+                            });
+                        }
+                    }
+                } else {
+                    throw new Error(data.error || 'API返回结果格式不正确');
                 }
-                
-                console.log('图像生成完成');
-            }, 2000); // 模拟2秒的生成时间
+            } catch (error) {
+                console.error('生成图片错误:', error);
+                if (previewArea) {
+                    previewArea.innerHTML = `
+                        <div class="preview-placeholder">
+                            <span class="material-symbols-outlined">error</span>
+                            <p>生成失败: ${error.message || '未知错误'}</p>
+                        </div>
+                    `;
+                }
+            }
         });
     }
 

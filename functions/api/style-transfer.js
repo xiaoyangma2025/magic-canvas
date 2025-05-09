@@ -17,6 +17,8 @@ export async function onRequestPost(context) {
     const imageFile = formData.get('image');
     const style = formData.get('style');
     
+    console.log('风格转换请求：', { style, imageFile: imageFile ? '已上传' : '未上传' });
+    
     if (!imageFile || !(imageFile instanceof File)) {
       return new Response(JSON.stringify({ 
         error: '请提供有效的图片文件' 
@@ -49,12 +51,14 @@ export async function onRequestPost(context) {
     });
 
     const result = await response.json();
+    console.log('API返回结果：', result);
     
     // 返回结果给前端
     return new Response(JSON.stringify(result), {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
+    console.error('风格转换失败：', error);
     return new Response(JSON.stringify({ 
       error: error.message || '风格转换失败' 
     }), {

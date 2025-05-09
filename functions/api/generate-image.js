@@ -16,6 +16,8 @@ export async function onRequestPost(context) {
     const requestData = await context.request.json();
     const { prompt, style, ratio } = requestData;
 
+    console.log('文生图请求：', { prompt, style, ratio });
+
     // 调用阿里云百炼API
     const response = await fetch('https://dashscope.aliyuncs.com/api/v1/services/aigc/text2image/image-generation', {
       method: 'POST',
@@ -37,12 +39,14 @@ export async function onRequestPost(context) {
     });
 
     const result = await response.json();
+    console.log('API返回结果：', result);
     
     // 返回结果给前端
     return new Response(JSON.stringify(result), {
       headers: { 'Content-Type': 'application/json' }
     });
   } catch (error) {
+    console.error('处理请求失败：', error);
     return new Response(JSON.stringify({ 
       error: error.message || '处理请求失败' 
     }), {
