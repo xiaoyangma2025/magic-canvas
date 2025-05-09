@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MagicCanvas AI - 智能艺术创作平台</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="material-symbols-outlined logo-icon">brush</span>
+                <h1>MagicCanvas</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#create">创作</a></li>
+                    <li><a href="#features">特性</a></li>
+                    <li><a href="#gallery">画廊</a></li>
+                    <li><a href="#pricing">定价</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+            <div class="controls">
+                <button class="theme-toggle" aria-label="切换主题">
+                    <span class="material-symbols-outlined">dark_mode</span>
+                </button>
+                <button class="lang-toggle" aria-label="切换语言">
+                    <span>中/En</span>
+                </button>
+            </div>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-login">登录</a>
+                <a href="#" class="btn btn-primary">注册</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>AI智能创意，一键生成艺术</h2>
+                <p>无限免费使用，无需注册，将文字和图片转化为多种艺术风格。开启你的创意之旅！</p>
+                <div class="hero-buttons">
+                    <a href="#create" class="btn btn-primary btn-large">立即创作</a>
+                    <a href="#gallery" class="btn btn-secondary btn-large">浏览作品</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/hero-illustration.png" alt="AI创意展示" />
+            </div>
+        </div>
+    </section>
+
+    <section class="branding-section">
+        <div class="container">
+            <h2>强大技术支持</h2>
+            <p class="section-desc">采用业界领先的技术栈，为您提供稳定、高效的服务</p>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <img src="img/react.svg" alt="React" />
+                    <span>React</span>
+                </div>
+                <div class="tech-item">
+                    <img src="img/tailwind.svg" alt="TailwindCSS" />
+                    <span>TailwindCSS</span>
+                </div>
+                <div class="tech-item">
+                    <img src="img/ai.svg" alt="AI" />
+                    <span>先进AI模型</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="introduce-section">
+        <div class="container">
+            <h2>为什么选择 MagicCanvas？</h2>
+            <p class="section-desc">让您的图片和文字完美融合，创造独特视觉体验</p>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <span class="material-symbols-outlined">rocket_launch</span>
+                    </div>
+                    <h3>免费使用</h3>
+                    <p>无需注册即可体验核心功能，让创意不受限制</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                    </div>
+                    <h3>自然融合</h3>
+                    <p>AI智能算法确保文字与图片完美融合，犹如原创设计</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <span class="material-symbols-outlined">speed</span>
+                    </div>
+                    <h3>快速生成</h3>
+                    <p>平均3秒即可生成成品，效率远超传统设计工具</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="create" class="create-section">
+        <div class="container">
+            <div class="create-header">
+                <h2>开始创作</h2>
+                <p>多种创作方式，让灵感自由绽放</p>
+            </div>
+            
+            <div class="create-options">
+                <div class="create-tab active" data-tab="text-to-image">
+                    <span class="material-symbols-outlined">description</span>
+                    <span>文生图</span>
+                </div>
+                <div class="create-tab" data-tab="image-to-image">
+                    <span class="material-symbols-outlined">image</span>
+                    <span>图生图</span>
+                </div>
+                <div class="create-tab" data-tab="style-transfer">
+                    <span class="material-symbols-outlined">palette</span>
+                    <span>风格转换</span>
+                </div>
+            </div>
+            
+            <div class="create-content">
+                <!-- 文生图面板 -->
+                <div class="create-panel active" id="text-to-image-panel">
+                    <div class="input-area">
+                        <textarea placeholder="描述你想创建的图像，例如：'星空下的古老城堡，梦幻风格'"></textarea>
+                        <div class="style-select">
+                            <div class="style-option active">
+                                <span>水彩风格</span>
+                            </div>
+                            <div class="style-option">
+                                <span>动漫风格</span>
+                            </div>
+                            <div class="style-option">
+                                <span>未来科技</span>
+                            </div>
+                            <div class="style-option">
+                                <span>魔幻奇想</span>
+                            </div>
+                            <div class="style-option">
+                                <span>写实照片</span>
+                            </div>
+                            <div class="style-option more">
+                                <span>更多风格...</span>
+                            </div>
+                        </div>
+                        <div class="aspect-ratio">
+                            <span>比例：</span>
+                            <div class="ratio-options">
+                                <div class="ratio-option active">1:1</div>
+                                <div class="ratio-option">4:3</div>
+                                <div class="ratio-option">16:9</div>
+                                <div class="ratio-option">自定义</div>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary">清除</button>
+                            <button class="btn btn-primary">生成 (免费)</button>
+                        </div>
+                    </div>
+                    <div class="preview-area">
+                        <div class="preview-placeholder">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                            <p>你的创作将在这里展示</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 图生图面板 -->
+                <div class="create-panel" id="image-to-image-panel">
+                    <div class="input-area">
+                        <div class="upload-zone" id="uploadZone">
+                            <span class="material-symbols-outlined">cloud_upload</span>
+                            <h3>上传背景图片</h3>
+                            <p>支持 JPG、PNG 格式，最大 10MB</p>
+                            <input type="file" id="imageUpload" accept="image/*" hidden />
+                            <button class="btn btn-secondary">选择图片</button>
+                        </div>
+                        <div class="upload-preview" id="uploadPreview" style="display: none;">
+                            <img src="" alt="预览图" />
+                            <button class="btn btn-secondary btn-change">更换图片</button>
+                        </div>
+                        <div class="style-select">
+                            <div class="style-option active">
+                                <span>增强细节</span>
+                            </div>
+                            <div class="style-option">
+                                <span>去除背景</span>
+                            </div>
+                            <div class="style-option">
+                                <span>修复优化</span>
+                            </div>
+                            <div class="style-option">
+                                <span>扩展画面</span>
+                            </div>
+                            <div class="style-option more">
+                                <span>更多选项...</span>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary">重置</button>
+                            <button class="btn btn-primary">生成 (免费)</button>
+                        </div>
+                    </div>
+                    <div class="preview-area">
+                        <div class="preview-placeholder">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                            <p>处理后的图片将在这里展示</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 风格转换面板 -->
+                <div class="create-panel" id="style-transfer-panel">
+                    <div class="input-area">
+                        <div class="style-transfer-options">
+                            <div class="style-card active">
+                                <img src="img/水彩艺术.png" alt="水彩风格" />
+                                <span>水彩艺术</span>
+                            </div>
+                            <div class="style-card">
+                                <img src="img/动漫插画.png" alt="动漫风格" />
+                                <span>动漫插画</span>
+                            </div>
+                            <div class="style-card">
+                                <img src="img/像素艺术.png" alt="像素风格" />
+                                <span>像素艺术</span>
+                            </div>
+                            <div class="style-card">
+                                <img src="img/经典油画.png" alt="油画风格" />
+                                <span>经典油画</span>
+                            </div>
+                        </div>
+                        <div class="upload-zone style-upload" id="styleUploadZone">
+                            <span class="material-symbols-outlined">cloud_upload</span>
+                            <h3>上传你的图片</h3>
+                            <p>支持 JPG、PNG 格式，最大 10MB</p>
+                            <input type="file" id="styleImageUpload" accept="image/*" hidden />
+                            <button class="btn btn-secondary">选择图片</button>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary">重置</button>
+                            <button class="btn btn-primary">转换风格 (免费)</button>
+                        </div>
+                    </div>
+                    <div class="preview-area">
+                        <div class="preview-placeholder">
+                            <span class="material-symbols-outlined">auto_awesome</span>
+                            <p>转换后的图片将在这里展示</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2>我们的强大功能</h2>
+            <p class="section-desc">MagicCanvas集合多种先进AI技术，为你提供无与伦比的创作体验</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-symbols-outlined">bolt</span>
+                    </div>
+                    <h3>闪电速度</h3>
+                    <p>优化的AI引擎，几秒钟内生成高质量图像，让你的创意即刻成形</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-symbols-outlined">palette</span>
+                    </div>
+                    <h3>多样风格</h3>
+                    <p>上百种艺术风格可选，从古典油画到现代动漫，满足各种创作需求</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-symbols-outlined">architecture</span>
+                    </div>
+                    <h3>高级定制</h3>
+                    <p>精确控制你的创作，调整细节参数，创造出独一无二的艺术作品</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-symbols-outlined">verified</span>
+                    </div>
+                    <h3>高清输出</h3>
+                    <p>生成高分辨率图像，适用于打印、社交媒体和专业设计项目</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-symbols-outlined">lock</span>
+                    </div>
+                    <h3>隐私保护</h3>
+                    <p>零数据保留政策，你的创作和提示词不会被永久存储，保障你的隐私安全</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <span class="material-symbols-outlined">star</span>
+                    </div>
+                    <h3>免费无限</h3>
+                    <p>基础功能完全免费且无使用限制，让每个人都能享受AI创作的乐趣</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="styles" class="styles-section">
+        <div class="container">
+            <h2>探索独特风格</h2>
+            <p class="section-desc">从经典到前卫，MagicCanvas提供丰富多样的艺术风格，激发你的创作灵感</p>
+            <div class="styles-showcase">
+                <div class="showcase-card">
+                    <div class="showcase-image">
+                        <img src="img/水彩艺术.png" alt="水彩风格" />
+                    </div>
+                    <div class="showcase-info">
+                        <h3>水彩艺术</h3>
+                        <p>柔和的色彩和渐变，呈现梦幻般的水彩效果</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-image">
+                        <img src="img/动漫插画.png" alt="动漫风格" />
+                    </div>
+                    <div class="showcase-info">
+                        <h3>动漫插画</h3>
+                        <p>鲜明的线条和色彩，打造经典动漫风格的人物和场景</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-image">
+                        <img src="img/像素艺术.png" alt="像素风格" />
+                    </div>
+                    <div class="showcase-info">
+                        <h3>像素艺术</h3>
+                        <p>复古游戏风格的像素化处理，充满怀旧气息</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <div class="showcase-image">
+                        <img src="img/经典油画.png" alt="油画风格" />
+                    </div>
+                    <div class="showcase-info">
+                        <h3>经典油画</h3>
+                        <p>厚重的笔触和丰富的纹理，呈现传统油画的艺术感</p>
+                    </div>
+                </div>
+            </div>
+            <div class="styles-more">
+                <a href="#" class="btn btn-secondary">查看更多风格</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2>灵感画廊</h2>
+            <p class="section-desc">来自全球用户的精彩创作，寻找你的下一个创意灵感</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="img/gallery-1.jpg" alt="用户作品" />
+                    <div class="gallery-item-hover">
+                        <div class="gallery-item-info">
+                            <p class="prompt">"夕阳下的海边城堡，梦幻风格"</p>
+                            <p class="style">水彩风格</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery-2.jpg" alt="用户作品" />
+                    <div class="gallery-item-hover">
+                        <div class="gallery-item-info">
+                            <p class="prompt">"未来城市中的机器人咖啡馆"</p>
+                            <p class="style">赛博朋克</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery-3.jpg" alt="用户作品" />
+                    <div class="gallery-item-hover">
+                        <div class="gallery-item-info">
+                            <p class="prompt">"神秘森林中的小精灵"</p>
+                            <p class="style">魔幻风格</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery-4.jpg" alt="用户作品" />
+                    <div class="gallery-item-hover">
+                        <div class="gallery-item-info">
+                            <p class="prompt">"星空下的古老寺庙"</p>
+                            <p class="style">油画风格</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery-5.jpg" alt="用户作品" />
+                    <div class="gallery-item-hover">
+                        <div class="gallery-item-info">
+                            <p class="prompt">"雪山之巅的独行侠"</p>
+                            <p class="style">写实风格</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery-6.jpg" alt="用户作品" />
+                    <div class="gallery-item-hover">
+                        <div class="gallery-item-info">
+                            <p class="prompt">"花丛中的童话小屋"</p>
+                            <p class="style">动漫风格</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-more">
+                <a href="#" class="btn btn-secondary">查看更多作品</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing-section">
+        <div class="container">
+            <h2>选择适合你的套餐</h2>
+            <p class="section-desc">从免费使用到专业应用，总有一款适合你的需求</p>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>免费版</h3>
+                        <div class="price">¥0<span>/永久</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><span class="check">✓</span> 每日20次免费生成</li>
+                            <li><span class="check">✓</span> 标准分辨率输出</li>
+                            <li><span class="check">✓</span> 20种基础风格</li>
+                            <li><span class="check">✓</span> 文生图功能</li>
+                            <li><span class="check">✓</span> 基础图生图</li>
+                            <li><span class="cross">✗</span> 高级调整参数</li>
+                            <li><span class="cross">✗</span> 批量生成</li>
+                            <li><span class="cross">✗</span> 高分辨率输出</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#" class="btn btn-secondary btn-block">开始使用</a>
+                    </div>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">最受欢迎</div>
+                    <div class="pricing-header">
+                        <h3>进阶版</h3>
+                        <div class="price">¥29<span>/月</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><span class="check">✓</span> 每日100次生成</li>
+                            <li><span class="check">✓</span> 高清分辨率输出</li>
+                            <li><span class="check">✓</span> 100种艺术风格</li>
+                            <li><span class="check">✓</span> 文生图功能</li>
+                            <li><span class="check">✓</span> 高级图生图</li>
+                            <li><span class="check">✓</span> 高级调整参数</li>
+                            <li><span class="check">✓</span> 批量生成(10张)</li>
+                            <li><span class="cross">✗</span> 超高分辨率输出</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#" class="btn btn-primary btn-block">选择方案</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>专业版</h3>
+                        <div class="price">¥99<span>/月</span></div>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><span class="check">✓</span> 每日无限次生成</li>
+                            <li><span class="check">✓</span> 超高清分辨率输出</li>
+                            <li><span class="check">✓</span> 全部艺术风格</li>
+                            <li><span class="check">✓</span> 文生图功能</li>
+                            <li><span class="check">✓</span> 专业图生图</li>
+                            <li><span class="check">✓</span> 全部高级参数</li>
+                            <li><span class="check">✓</span> 批量生成(无限)</li>
+                            <li><span class="check">✓</span> 商业使用授权</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-cta">
+                        <a href="#" class="btn btn-secondary btn-block">选择方案</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2>常见问题</h2>
+            <p class="section-desc">找到你可能关心的问题答案</p>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>MagicCanvas是什么以及它能做什么？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>MagicCanvas是一个AI智能艺术创作平台，能够将你的文字描述或上传的图片转化为多种艺术风格的图像。无论你是想要创作数字艺术、设计社交媒体内容，还是探索视觉创意，MagicCanvas都能帮助你快速实现。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>MagicCanvas真的完全免费吗？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>MagicCanvas提供永久免费的基础功能，每日有一定数量的免费生成次数。我们也提供付费套餐，以满足更高频率使用和专业需求的用户。我们的目标是让每个人都能体验AI创作的乐趣，同时为专业用户提供更强大的工具。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>我需要创建账户才能使用MagicCanvas吗？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>基础功能不需要创建账户，你可以直接访问网站开始创作。但创建免费账户可以保存你的创作历史和喜爱的作品。付费功能则需要创建账户以管理你的订阅和使用权限。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>我可以用MagicCanvas创建哪些类型的图像？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>你可以创建各种类型的图像，包括风景、人物、抽象艺术、概念设计等。我们提供多种艺术风格，如水彩、油画、动漫、像素艺术、赛博朋克等，让你的创意不受限制。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>MagicCanvas如何保护我的隐私？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>我们非常重视用户隐私。我们采用零数据保留政策，你的提示词和生成的图像不会被永久存储在我们的服务器上。我们也不会要求不必要的个人信息。你的创作是完全私密的。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>我可以将生成的图像用于商业用途吗？</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>免费版生成的图像可用于个人用途。如果你需要将图像用于商业项目，我们建议升级到专业版，它提供商业使用授权，让你可以在任何商业场景中安心使用你的创作。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>开始你的AI创作之旅</h2>
+                <p>加入数百万创作者的行列，释放你的创意潜能</p>
+                <a href="#" class="btn btn-primary btn-large">立即免费开始</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="usage-section">
+        <div class="container">
+            <h2>使用指南</h2>
+            <p class="section-desc">三步轻松创作，让创意瞬间成真</p>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>上传图片</h3>
+                    <p>选择您想要添加文字的背景图片，支持JPG、PNG格式</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>输入文字</h3>
+                    <p>输入想要添加的文字内容，中文至少3个字，英文至少2个单词</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>生成作品</h3>
+                    <p>点击生成按钮，AI将自动将文字自然融入图片中</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="status-section">
+        <div class="container">
+            <h2>实时数据</h2>
+            <p class="section-desc">见证MagicCanvas的影响力</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100,000+</div>
+                    <div class="stat-label">用户创作</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">满意度</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3秒</div>
+                    <div class="stat-label">平均生成时间</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">合作品牌</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-section">
+        <div class="container">
+            <h2>用户评价</h2>
+            <p class="section-desc">听听他们怎么说</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"MagicCanvas让我的社交媒体图片制作变得如此简单，文字的融入效果非常自然，完全看不出是AI生成的！"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="img/avatar1.jpg" alt="用户头像" />
+                        <div class="author-info">
+                            <h4>张小明</h4>
+                            <p>自媒体创作者</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"作为一个设计师，我很欣赏MagicCanvas在文字融合方面的表现。它不仅节省了我的时间，还能保持很高的设计品质。"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="img/avatar2.jpg" alt="用户头像" />
+                        <div class="author-info">
+                            <h4>李佳</h4>
+                            <p>平面设计师</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"我们公司的营销团队每天都在使用MagicCanvas，它的批量处理功能极大提高了我们的工作效率。"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="img/avatar3.jpg" alt="用户头像" />
+                        <div class="author-info">
+                            <h4>王强</h4>
+                            <p>营销总监</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <span class="material-symbols-outlined logo-icon">brush</span>
+                        <h2>MagicCanvas</h2>
+                    </div>
+                    <p>让创意自由绽放，让设计更加简单</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-link-group">
+                        <h3>产品</h3>
+                        <ul>
+                            <li><a href="#features">功能特性</a></li>
+                            <li><a href="#pricing">定价方案</a></li>
+                            <li><a href="#gallery">作品展示</a></li>
+                            <li><a href="#faq">常见问题</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-group">
+                        <h3>资源</h3>
+                        <ul>
+                            <li><a href="#">使用教程</a></li>
+                            <li><a href="#">API文档</a></li>
+                            <li><a href="#">技术支持</a></li>
+                            <li><a href="#">更新日志</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-group">
+                        <h3>关于</h3>
+                        <ul>
+                            <li><a href="#">关于我们</a></li>
+                            <li><a href="#">联系方式</a></li>
+                            <li><a href="#">加入我们</a></li>
+                            <li><a href="#">合作伙伴</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-link-group">
+                        <h3>法律</h3>
+                        <ul>
+                            <li><a href="#">服务条款</a></li>
+                            <li><a href="#">隐私政策</a></li>
+                            <li><a href="#">免责声明</a></li>
+                            <li><a href="#">合规信息</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-info">
+                    <p>&copy; 2024 MagicCanvas. 保留所有权利</p>
+                    <nav class="legal-links">
+                        <a href="#">网站地图</a>
+                        <a href="#">Cookie 设置</a>
+                        <a href="#">无障碍说明</a>
+                    </nav>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="微信">
+                        <i class="fab fa-weixin"></i>
+                    </a>
+                    <a href="#" aria-label="微博">
+                        <i class="fab fa-weibo"></i>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <button class="back-to-top" aria-label="返回顶部">
+                <span class="material-symbols-outlined">arrow_upward</span>
+            </button>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html> 
