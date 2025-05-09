@@ -107,37 +107,35 @@
 
     <section id="create" class="create-section">
         <div class="container">
-            <div class="create-header">
-                <h2>开始创作</h2>
-                <p>多种创作方式，让灵感自由绽放</p>
-            </div>
-            
-            <div class="create-options">
-                <div class="create-tab active" data-tab="text-to-image">
-                    <span class="material-symbols-outlined">description</span>
-                    <span>文生图</span>
-                </div>
-                <div class="create-tab" data-tab="image-to-image">
-                    <span class="material-symbols-outlined">image</span>
-                    <span>图生图</span>
-                </div>
-                <div class="create-tab" data-tab="style-transfer">
-                    <span class="material-symbols-outlined">palette</span>
-                    <span>风格转换</span>
-                </div>
+            <h2>开始创作</h2>
+            <p class="section-desc">选择你喜欢的创作方式，释放你的想象力</p>
+            <div class="create-tabs">
+                <div class="create-tab active" data-panel="text-to-image-panel">文生图</div>
+                <div class="create-tab" data-panel="image-to-image-panel">图生图</div>
+                <div class="create-tab" data-panel="style-transfer-panel">风格转换</div>
             </div>
             
             <div class="create-content">
                 <!-- 文生图面板 -->
                 <div class="create-panel active" id="text-to-image-panel">
                     <div class="input-area">
-                        <textarea placeholder="描述你想创建的图像，例如：'星空下的古老城堡，梦幻风格'"></textarea>
-                        <div class="style-select">
+                        <textarea placeholder="描述你想要的图像，例如：'一只猫坐在窗台上看着夕阳'"></textarea>
+                        <h3>选择风格</h3>
+                        <div class="style-options">
                             <div class="style-option active">
+                                <span>写实照片</span>
+                            </div>
+                            <div class="style-option">
                                 <span>水彩风格</span>
                             </div>
                             <div class="style-option">
                                 <span>动漫风格</span>
+                            </div>
+                            <div class="style-option">
+                                <span>油画风格</span>
+                            </div>
+                            <div class="style-option">
+                                <span>像素艺术</span>
                             </div>
                             <div class="style-option">
                                 <span>未来科技</span>
@@ -146,30 +144,40 @@
                                 <span>魔幻奇想</span>
                             </div>
                             <div class="style-option">
-                                <span>写实照片</span>
+                                <span>扩展画面</span>
                             </div>
                             <div class="style-option more">
-                                <span>更多风格...</span>
+                                <span>更多选项...</span>
                             </div>
                         </div>
-                        <div class="aspect-ratio">
-                            <span>比例：</span>
-                            <div class="ratio-options">
-                                <div class="ratio-option active">1:1</div>
-                                <div class="ratio-option">4:3</div>
-                                <div class="ratio-option">16:9</div>
-                                <div class="ratio-option">自定义</div>
+                        <h3>选择比例</h3>
+                        <div class="ratio-options">
+                            <div class="ratio-option active" data-ratio="1:1">
+                                <div class="ratio-preview square"></div>
+                                <span>1:1</span>
+                            </div>
+                            <div class="ratio-option" data-ratio="4:3">
+                                <div class="ratio-preview landscape"></div>
+                                <span>4:3</span>
+                            </div>
+                            <div class="ratio-option" data-ratio="16:9">
+                                <div class="ratio-preview widescreen"></div>
+                                <span>16:9</span>
+                            </div>
+                            <div class="ratio-option" data-ratio="custom">
+                                <div class="ratio-preview custom"></div>
+                                <span>自定义</span>
                             </div>
                         </div>
                         <div class="action-buttons">
-                            <button class="btn btn-secondary">清除</button>
+                            <button class="btn btn-secondary">重置</button>
                             <button class="btn btn-primary">生成 (免费)</button>
                         </div>
                     </div>
                     <div class="preview-area">
                         <div class="preview-placeholder">
                             <span class="material-symbols-outlined">auto_awesome</span>
-                            <p>你的创作将在这里展示</p>
+                            <p>生成的图片将在这里展示</p>
                         </div>
                     </div>
                 </div>
