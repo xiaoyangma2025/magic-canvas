@@ -485,30 +485,43 @@ nav a:hover {
 
 .preview-area {
     flex: 1;
-    min-height: 400px;
-    background-color: var(--card-bg);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #d8def0;
+    background-color: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 20px;
     position: relative;
+    overflow: hidden;
 }
 
 .preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    color: var(--text-lightest);
-    background-color: #e9ecf5;
-    padding: 2rem;
-    width: 80%;
-    border-radius: var(--radius-lg);
+    color: var(--text-secondary);
+    padding: 30px;
+}
+
+.preview-placeholder.error {
+    color: var(--color-error, #e53935);
+    background-color: var(--color-error-bg, rgba(229, 57, 53, 0.1));
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid var(--color-error-border, rgba(229, 57, 53, 0.3));
+}
+
+.preview-placeholder.error .material-symbols-outlined {
+    font-size: 48px;
+    margin-bottom: 10px;
+    color: var(--color-error, #e53935);
 }
 
 .preview-placeholder .material-symbols-outlined {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 48px;
+    margin-bottom: 15px;
 }
 
 /* 生成结果和下载按钮样式 */

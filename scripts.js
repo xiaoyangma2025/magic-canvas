@@ -140,8 +140,36 @@ document.addEventListener('DOMContentLoaded', function() {
             const activeStyle = document.querySelector('.style-option.active');
             const activeRatio = document.querySelector('.ratio-option.active');
             
-            const style = activeStyle ? activeStyle.textContent.trim() : '写实照片';
+            const styleText = activeStyle ? activeStyle.textContent.trim() : '写实照片';
             const ratio = activeRatio ? activeRatio.getAttribute('data-ratio') || '1:1' : '1:1';
+            
+            // 风格映射
+            let style = 'photo';
+            switch (styleText) {
+                case '写实照片':
+                    style = 'photo';
+                    break;
+                case '水彩风格':
+                    style = 'watercolor';
+                    break;
+                case '动漫风格':
+                    style = 'cartoon';
+                    break;
+                case '油画风格':
+                    style = 'oil';
+                    break;
+                case '像素艺术':
+                    style = 'art';
+                    break;
+                case '未来科技':
+                    style = 'photo';
+                    break;
+                case '魔幻奇想':
+                    style = 'photo';
+                    break;
+                default:
+                    style = 'photo';
+            }
             
             // 显示加载状态
             const previewArea = document.querySelector('.preview-area');
@@ -156,20 +184,39 @@ document.addEventListener('DOMContentLoaded', function() {
             
             try {
                 console.log('发送API请求:', { prompt, style, ratio });
-                const response = await fetch('/api/generate-image', {
+                let apiSize = '1024*1024'; // 默认值
+                if (ratio) {
+                    switch(ratio) {
+                        case '1:1': apiSize = '1024*1024'; break;
+                        case '4:3': apiSize = '1024*768'; break;
+                        case '16:9': apiSize = '1024*576'; break;
+                        default: apiSize = ratio.includes('*') ? ratio : '1024*1024';
+                    }
+                }
+                // 更新API路径为text-to-image
+                const response = await fetch('/api/text-to-image', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ prompt, style, ratio })
+                    body: JSON.stringify({ prompt, style, ratio: apiSize })
                 });
                 
-                const data = await response.json();
-                console.log('API响应:', data);
+                console.log('收到响应状态码:', response.status);
                 
-                if (data.output && data.output.results && data.output.results.length > 0) {
-                    // 获取阿里云返回的临时图片URL
-                    const imageUrl = data.output.results[0].url;
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('API错误响应:', errorText);
+                    throw new Error(`服务器返回错误: ${response.status} ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('API响应数据:', data);
+                
+                if (data.success && data.image) {
+                    // 使用服务器处理后的本地图片URL
+                    const imageUrl = data.image;
+                    console.log('生成的图片URL:', imageUrl);
                     if (previewArea) {
                         previewArea.innerHTML = `
                             <div class="result-container">
@@ -193,15 +240,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     }
                 } else {
-                    throw new Error(data.error || 'API返回结果格式不正确');
+                    // 显示错误消息
+                    if (previewArea) {
+                        previewArea.innerHTML = `
+                            <div class="preview-placeholder error">
+                                <span class="material-symbols-outlined">error</span>
+                                <p>生成失败: ${data.error || '未知错误'}</p>
+                            </div>
+                        `;
+                    }
                 }
+                
             } catch (error) {
-                console.error('生成图片错误:', error);
+                console.error('API请求错误:', error);
                 if (previewArea) {
                     previewArea.innerHTML = `
-                        <div class="preview-placeholder">
+                        <div class="preview-placeholder error">
                             <span class="material-symbols-outlined">error</span>
-                            <p>生成失败: ${error.message || '未知错误'}</p>
+                            <p>生成失败: ${error.message || '网络错误'}</p>
                         </div>
                     `;
                 }
